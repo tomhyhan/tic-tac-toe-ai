@@ -2,25 +2,27 @@
 
 import { useState } from "react"
 import Block from "./component/block";
+import { nextBestMove } from './lib/utils';
 
 export default function Home() {
     const [board, setBoard] = useState(Array(9).fill(null))
     const [turn, setTurn] = useState("human")
     
     const handleBlockClick = (coord: number) => {
-
         const newBoard = [...board]
-        if (turn === "human") {
-            newBoard[coord] = "X"
-            setBoard(newBoard)
-            setTurn("computer")
-        } else {
-            const newBoard = [...board]
-            newBoard[coord] = "O"
-            setBoard(newBoard)
-            setTurn("human")
-        }
+        newBoard[coord] = "X"
+        setBoard(newBoard)
+        setTurn("computer")
     }
+
+    if (turn == "computer") {
+        const newBoard = [...board]
+        const bestMove = nextBestMove(newBoard)
+        newBoard[bestMove] = "O"
+        setBoard(newBoard)
+        setTurn("human")
+    }
+    
 
   return (
     <main >
