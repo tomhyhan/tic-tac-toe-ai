@@ -11,7 +11,8 @@ export function nextBestMove(board: (string | null)[]) {
             bestMove = i
         }
     }
-    if (!bestMove) throw new Error("Best move not defined")
+    if (bestMove == null) throw new Error("Best move not defined")
+    console.log("")
     return bestMove
 }
 
@@ -22,7 +23,7 @@ function matches(b1:(string | null),b2:(string | null),b3:(string | null)){
     return false
 }
 
-function wins(board: (string | null)[]) {
+export function wins(board: (string | null)[]) {
     for (let row=0; row<3; row++ ) {
         if (matches(board[row*3+0],board[row*3+1],board[row*3+2])) {
             return true
@@ -41,7 +42,7 @@ function wins(board: (string | null)[]) {
     return false
 }
 
-function draws(board: (string | null)[]) {
+export function draws(board: (string | null)[]) {
     for (let i=0; i<board.length; i++) {
         if (board[i] === null) {
             return false
@@ -51,8 +52,9 @@ function draws(board: (string | null)[]) {
 }
 
 function minimax(board: (string | null)[], aiTurn: boolean) {
+
     if (wins(board)) {
-        return aiTurn? 1: -1
+        return aiTurn? -1: 1
     }
 
     if (draws(board)) {
