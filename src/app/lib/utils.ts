@@ -11,8 +11,7 @@ export function nextBestMove(board: (string | null)[]) {
             bestMove = i
         }
     }
-    if (bestMove == null) throw new Error("Best move not defined")
-    console.log("")
+    if (bestMove == null) return null
     return bestMove
 }
 

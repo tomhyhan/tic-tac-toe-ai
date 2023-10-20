@@ -22,7 +22,7 @@ export default function Home() {
     if (turn == "computer") {
         const newBoard = [...board]
         const bestMove = nextBestMove(newBoard)
-        newBoard[bestMove] = "O"
+        if (bestMove !== null) newBoard[bestMove] = "O"; 
         setTurn("human")
         setBoard(newBoard)
     }
@@ -38,7 +38,7 @@ export default function Home() {
                 {board.map((val, coord) => <Block key={coord} val={val} coord={coord} onBlockClick={handleBlockClick}/>)}
             </div>
         </main>
-        {end && <button onClick={()=>setBoard(Array(9).fill(null))} className="border-2 p-2 rounded m-2">retry</button>}
+        {end && <button onClick={()=>{setBoard(Array(9).fill(null))}} className="border-2 p-2 rounded m-2">retry</button>}
     </>
     )
 }
