@@ -32,8 +32,8 @@ export default function Home() {
     
   return (
     <>
-        {win && <div>{turn === "human"? "You Lose" : "You Won"}</div>}
-        {draw && <div>draw<br /></div>}
+        {win && <div>{turn === "human"? "You Lost" : "You Won"}</div>}
+        {draw && <div>Draw<br /></div>}
         <main >
             <div className="grid grid-cols-3 w-3/4">
                 {board.map((val, coord) => <Block key={coord} val={val} coord={coord} onBlockClick={handleBlockClick}/>)}
